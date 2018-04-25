@@ -60,6 +60,7 @@ public class DetailActivity extends AppCompatActivity {
         Picasso.with(this)
 
                 .load(sandwich.getImage())
+                // in case of no image found, we will display an image not found picture
                 .error(R.drawable.image_not_found)
                 .into(ingredientsIv);
 
@@ -81,14 +82,15 @@ public class DetailActivity extends AppCompatActivity {
          StringBuilder mIngredientBuilder = new StringBuilder();
          // getting list of ingredients from the sandwich to parse
          List<String> mIngredients = sandwich.getIngredients();
-         //iterates thru each item and adds it the string with a carriage return at the end
+         //iterates thru each item and adds it the string with a carriage return at the end of each item
          for(String ingredient:mIngredients )
          {
              mIngredientBuilder.append(ingredient+"\n");
          }
-         //get rid of last return- first get length
+         //gets rid of last return
+        //  get length of stringbuilder
         int length= mIngredientBuilder.length();
-        // delete the last character to get rid of white line below ingredients
+        // delete the last character to get rid of empty line below ingredients
          mIngredientBuilder.deleteCharAt(length-1);
          // sets the ingredients textview to the ingredients string builder
         tv_ingredients.setText(mIngredientBuilder.toString());
@@ -96,7 +98,7 @@ public class DetailActivity extends AppCompatActivity {
         StringBuilder mAkaListBuilder = new StringBuilder();
         // getting list of aka names from the sandwich to parse
          List<String > mAkaList = sandwich.getAlsoKnownAs();
-        //iterates thru each item and adds it the string with a carriage return at the end
+        //iterates thru each item and adds it the string with a carriage return at the end of each item
         for(String aka :mAkaList )
         {
             mAkaListBuilder.append(aka+"\n");
